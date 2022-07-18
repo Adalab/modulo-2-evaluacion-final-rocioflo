@@ -59,6 +59,7 @@ submitBtn.addEventListener('click', handleInput);
 let animeFavs = [];
 
 function handleClick(event) {
+  event.currentTarget.classList.toggle('red-background');
   const animeId = parseInt(event.currentTarget.id);
   const favFound = animes.find((anime) => anime.mal_id === animeId);
   const animeIndexFound = animeFavs.findIndex(
@@ -82,7 +83,7 @@ function renderFavorites() {
   favoritesList.innerHTML = '';
   for (const favAnime of animeFavs) {
     favoritesList.innerHTML += `
-  <li id="${favAnime.mal_id}" class="list-item js_list_item">
+  <li id="${favAnime.mal_id}" class="list-item js_list_item red-background">
     ${favAnime.title} 
     <img class="anime-image" src="${favAnime.images.jpg.image_url}">
   </li>`;
