@@ -23,6 +23,8 @@
   flex-direction: column;
   align-items: center;
   background-color: blue;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   width: 30rem;
   font-size: 2rem;
   color: white;
@@ -39,4 +41,8 @@
 
 .red-background {
   background-color: red;
+}
+
+.font-fav {
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }

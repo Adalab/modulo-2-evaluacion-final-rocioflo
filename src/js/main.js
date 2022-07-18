@@ -83,7 +83,7 @@ function renderFavorites() {
   favoritesList.innerHTML = '';
   for (const favAnime of animeFavs) {
     favoritesList.innerHTML += `
-  <li id="${favAnime.mal_id}" class="list-item js_list_item red-background">
+  <li id="${favAnime.mal_id}" class="list-item js_list_item red-background font-fav">
     ${favAnime.title} 
     <img class="anime-image" src="${favAnime.images.jpg.image_url}">
   </li>`;
