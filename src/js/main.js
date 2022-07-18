@@ -138,12 +138,15 @@ function favDisplay() {
   if (favStored && favStored !== '') {
     for (const favAnime of favStored) {
       favoritesList.innerHTML += `
+      
         <li id="${favAnime.mal_id}" 
-        class="fav-list-item js_list_item other-background font-fav">
+        class="fav-list-item js_list_item other-background font-fav"> </i>
         ${favAnime.title} 
+      
         <img class="anime-image" 
         src="${favAnime.images.jpg.image_url}">
         </li>`;
+      // <i class="icon fa-solid fa-heart-circle-xmark"></i>
     }
   } else {
     renderFavorites();
