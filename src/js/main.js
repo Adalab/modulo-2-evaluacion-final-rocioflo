@@ -59,20 +59,21 @@ submitBtn.addEventListener('click', handleInput);
 let animeFavs = [];
 
 function handleClick(event) {
-  event.currentTarget.classList.toggle('red-background');
   const animeId = parseInt(event.currentTarget.id);
+
   const favFound = animes.find((anime) => anime.mal_id === animeId);
   const animeIndexFound = animeFavs.findIndex(
     (anime) => anime.mal_id === animeId
   );
 
-  console.log(animeIndexFound);
-  console.log(animeFavs);
-
   if (animeIndexFound === -1) {
     animeFavs.push(favFound);
+    event.currentTarget.classList.add('red-background');
+    event.currentTarget.classList.add('font-fav');
   } else {
     animeFavs.splice(animeIndexFound, 1);
+    event.currentTarget.classList.remove('red-background');
+    event.currentTarget.classList.remove('font-fav');
   }
   renderFavorites();
   favStorage();
@@ -83,17 +84,43 @@ function renderFavorites() {
 
   for (const favAnime of animeFavs) {
     favoritesList.innerHTML += `
-  <li id="${favAnime.mal_id}" class="list-item js_list_item red-background font-fav">
+  <li id="${favAnime.mal_id}" class="fav-list-item js_fav_list_item">
     ${favAnime.title} 
     <img class="anime-image" src="${favAnime.images.jpg.image_url}">
   </li>`;
   }
+  listenerFavAnimes();
 }
 
 function listenerAnimes() {
   const animeList = document.querySelectorAll('.js_list_item');
 
   for (const li of animeList) {
+    li.addEventListener('click', handleClick);
+  }
+}
+
+// fav bonus
+
+// function handleFavClick(event) {
+//   const favId = parseInt(event.currentTarget.id);
+//   const favIndex = animeFavs.findIndex((fav) => fav.mal_id === favId);
+
+//   console.log(favId);
+//   console.log(favIndex);
+
+//   animeFavs.splice(favIndex, 1);
+
+//   const animeFiltered = animes.filter((anime) => anime.mal_id === favId);
+//   console.log(animeFiltered);
+
+//   renderFavorites();
+//   // renderAnime();
+// }
+
+function listenerFavAnimes() {
+  const animeFavList = document.querySelectorAll('.js_fav_list_item');
+  for (const li of animeFavList) {
     li.addEventListener('click', handleClick);
   }
 }
@@ -118,6 +145,7 @@ function favDisplay() {
   } else {
     renderFavorites();
   }
+  listenerFavAnimes();
 }
 
 favDisplay();
