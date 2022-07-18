@@ -61,13 +61,25 @@ let animeFavs = [];
 function handleClick(event) {
   const animeId = parseInt(event.currentTarget.id);
   const favFound = animes.find((anime) => anime.mal_id === animeId);
+  const animeIndexFound = animeFavs.findIndex(
+    (anime) => anime.mal_id === animeId
+  );
 
-  animeFavs.push(favFound);
+  console.log(animeIndexFound);
   console.log(animeFavs);
+
+  if (animeIndexFound === -1) {
+    animeFavs.push(favFound);
+  } else {
+    animeFavs.splice(animeIndexFound, 1);
+  }
+
+  favStorage();
   renderFavorites();
 }
 
 function renderFavorites() {
+  favoritesList.innerHTML = '';
   for (const favAnime of animeFavs) {
     favoritesList.innerHTML += `
   <li id="${favAnime.mal_id}" class="list-item js_list_item">
@@ -83,4 +95,10 @@ function listenerAnimes() {
   for (const li of animeList) {
     li.addEventListener('click', handleClick);
   }
+}
+
+// local storage
+
+function favStorage() {
+  localStorage.setItem('Anime favorites', JSON.stringify(animeFavs));
 }
