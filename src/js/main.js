@@ -69,7 +69,7 @@ function handleClick(event) {
 
   if (animeIndexFound === -1) {
     animeFavs.push(favFound);
-    // event.currentTarget.classList.add('red-background');
+    // event.currentTarget.classList.add('other-background');
     // event.currentTarget.classList.add('font-fav');
   } else {
     animeFavs.splice(animeIndexFound, 1);
@@ -84,7 +84,7 @@ function renderFavorites() {
 
   for (const favAnime of animeFavs) {
     favoritesList.innerHTML += `
-  <li id="${favAnime.mal_id}" class="fav-list-item js_fav_list_item">
+  <li id="${favAnime.mal_id}" class="fav-list-item js_fav_list_item"></i>
     ${favAnime.title} 
     <img class="anime-image" src="${favAnime.images.jpg.image_url}">
   </li>`;
@@ -139,7 +139,7 @@ function favDisplay() {
     for (const favAnime of favStored) {
       favoritesList.innerHTML += `
         <li id="${favAnime.mal_id}" 
-        class="fav-list-item js_list_item red-background font-fav">
+        class="fav-list-item js_list_item other-background font-fav">
         ${favAnime.title} 
         <img class="anime-image" 
         src="${favAnime.images.jpg.image_url}">
