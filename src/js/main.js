@@ -105,8 +105,8 @@ function favStorage() {
 }
 
 function favDisplay() {
-  if (localStorage.getItem('Anime favorites') !== '') {
-    const favStored = JSON.parse(localStorage.getItem('Anime favorites'));
+  const favStored = JSON.parse(localStorage.getItem('Anime favorites'));
+  if (favStored && favStored !== '') {
     console.log(favStored);
     for (const favAnime of favStored) {
       favoritesList.innerHTML += `
