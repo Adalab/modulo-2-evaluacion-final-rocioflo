@@ -11,6 +11,7 @@ const noImage =
   'https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png';
 const placeholderImage =
   'https://via.placeholder.com/225x200/ffffff/666666/?text=sin%20imagen%20%20:(';
+const favStored = JSON.parse(localStorage.getItem('Anime favorites') || '[]');
 
 //petition to server
 
@@ -26,7 +27,6 @@ function handleInput(ev) {
     .then((response) => response.json())
     .then((data) => {
       animes = data.data;
-      console.log(animes);
       renderAnime();
     });
 }
@@ -35,15 +35,23 @@ function handleInput(ev) {
 function renderAnime() {
   resultsList.innerHTML = '';
   for (const item of animes) {
+    const favCorrelation = animeFavs.find((fav) => fav.mal_id === item.mal_id);
+
+    let isFav = '';
+
+    if (favCorrelation) {
+      isFav = 'fav';
+    }
+
     if (item.images.jpg.image_url === noImage) {
       resultsList.innerHTML += `
-        <li id="${item.mal_id}" class="list-item js_list_item">
+        <li id="${item.mal_id}" class="list-item ${isFav} js_list_item">
           ${item.title} 
           <img class="anime-image" src="${placeholderImage}">
         </li>`;
     } else {
       resultsList.innerHTML += `
-      <li id="${item.mal_id}" class="list-item js_list_item">
+      <li id="${item.mal_id}" class="list-item ${isFav} js_list_item">
         ${item.title} 
         <img class="anime-image" src="${item.images.jpg.image_url}">
       </li>`;
@@ -78,14 +86,13 @@ function handleClick(event) {
 function renderFavorites() {
   favoritesList.innerHTML = '';
 
-  console.log(animeFavs);
   for (const favAnime of animeFavs) {
     if (favAnime.images.jpg.image_url === noImage) {
       favoritesList.innerHTML += `
         <li id="${favAnime.mal_id}" 
         class="fav-list-item js_fav_list_item"></i>
         ${favAnime.title} 
-        <i class='icon fa-solid fa-heart-circle-xmark' > </i >
+        <i class="icon fa-solid fa-heart"></i>
         <img class="anime-image" 
         src="${placeholderImage}">
         </li>`;
@@ -94,7 +101,7 @@ function renderFavorites() {
         <li id="${favAnime.mal_id}" 
         class="fav-list-item js_fav_list_item"></i>
         ${favAnime.title} 
-        <i class='icon fa-solid fa-heart-circle-xmark' > </i >
+        <i class="icon fa-solid fa-heart"></i>
         <img class="anime-image" 
         src="${favAnime.images.jpg.image_url}">
         </li>`;
@@ -126,7 +133,6 @@ function favStorage() {
 }
 
 function favDisplay() {
-  const favStored = JSON.parse(localStorage.getItem('Anime favorites'));
   animeFavs = favStored;
 
   if (favStored && favStored !== '') {
@@ -136,7 +142,7 @@ function favDisplay() {
           <li id="${favAnime.mal_id}" 
           class="fav-list-item js_fav_list_item"></i>
           ${favAnime.title} 
-          <i class='icon fa-solid fa-heart-circle-xmark' > </i >
+          <i class="icon fa-solid fa-heart"></i>
           <img class="anime-image" 
           src="${placeholderImage}">
           </li>`;
@@ -145,7 +151,7 @@ function favDisplay() {
           <li id="${favAnime.mal_id}" 
           class="fav-list-item js_fav_list_item"></i>
           ${favAnime.title} 
-          <i class='icon fa-solid fa-heart-circle-xmark' > </i >
+          <i class="icon fa-solid fa-heart"></i>
           <img class="anime-image" 
           src="${favAnime.images.jpg.image_url}">
           </li>`;

@@ -81,14 +81,10 @@
           background-color: $fifth-color;
         }
 
-        &:hover + .icon {
+        .icon {
           position: absolute;
-          right: 3px;
-          top: 3px;
-        }
-
-        & .icon {
-          display: none;
+          right: 10px;
+          top: 10px;
         }
       }
 
@@ -146,6 +142,14 @@
 
           &:hover {
             background-color: #f0d697;
+          }
+
+          &.fav {
+            background-color: $third-color;
+
+            &:hover {
+              background-color: $second-color;
+            }
           }
         }
       }
