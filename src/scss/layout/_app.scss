@@ -81,11 +81,15 @@
           background-color: $fifth-color;
         }
 
-        // .icon {
-        //   position: absolute;
-        //   right: 3px;
-        //   top: 3px;
-        // }
+        &:hover + .icon {
+          position: absolute;
+          right: 3px;
+          top: 3px;
+        }
+
+        & .icon {
+          display: none;
+        }
       }
 
       .reset-favs-btn {

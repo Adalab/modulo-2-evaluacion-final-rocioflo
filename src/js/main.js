@@ -50,8 +50,6 @@ function renderAnime() {
     }
   }
   listenerAnimes();
-
-  console.log(animeFavs);
 }
 
 submitBtn.addEventListener('click', handleInput);
@@ -69,8 +67,6 @@ function handleClick(event) {
 
   if (animeIndexFound === -1) {
     animeFavs.push(favFound);
-    // event.currentTarget.classList.add('other-background');
-    // event.currentTarget.classList.add('font-fav');
   } else {
     animeFavs.splice(animeIndexFound, 1);
   }
@@ -82,12 +78,27 @@ function handleClick(event) {
 function renderFavorites() {
   favoritesList.innerHTML = '';
 
+  console.log(animeFavs);
   for (const favAnime of animeFavs) {
-    favoritesList.innerHTML += `
-  <li id="${favAnime.mal_id}" class="fav-list-item js_fav_list_item"></i>
-    ${favAnime.title} 
-    <img class="anime-image" src="${favAnime.images.jpg.image_url}">
-  </li>`;
+    if (favAnime.images.jpg.image_url === noImage) {
+      favoritesList.innerHTML += `
+        <li id="${favAnime.mal_id}" 
+        class="fav-list-item js_fav_list_item"></i>
+        ${favAnime.title} 
+        <i class='icon fa-solid fa-heart-circle-xmark' > </i >
+        <img class="anime-image" 
+        src="${placeholderImage}">
+        </li>`;
+    } else {
+      favoritesList.innerHTML += `
+        <li id="${favAnime.mal_id}" 
+        class="fav-list-item js_fav_list_item"></i>
+        ${favAnime.title} 
+        <i class='icon fa-solid fa-heart-circle-xmark' > </i >
+        <img class="anime-image" 
+        src="${favAnime.images.jpg.image_url}">
+        </li>`;
+    }
   }
   renderAnime();
   listenerFavAnimes();
@@ -100,24 +111,6 @@ function listenerAnimes() {
     li.addEventListener('click', handleClick);
   }
 }
-
-// fav bonus
-
-// function handleFavClick(event) {
-//   const favId = parseInt(event.currentTarget.id);
-//   const favIndex = animeFavs.findIndex((fav) => fav.mal_id === favId);
-
-//   console.log(favId);
-//   console.log(favIndex);
-
-//   animeFavs.splice(favIndex, 1);
-
-//   const animeFiltered = animes.filter((anime) => anime.mal_id === favId);
-//   console.log(animeFiltered);
-
-//   renderFavorites();
-//   // renderAnime();
-// }
 
 function listenerFavAnimes() {
   const animeFavList = document.querySelectorAll('.js_fav_list_item');
@@ -134,19 +127,29 @@ function favStorage() {
 
 function favDisplay() {
   const favStored = JSON.parse(localStorage.getItem('Anime favorites'));
+  animeFavs = favStored;
 
   if (favStored && favStored !== '') {
     for (const favAnime of favStored) {
-      favoritesList.innerHTML += `
-      
-        <li id="${favAnime.mal_id}" 
-        class="fav-list-item js_list_item other-background font-fav"> </i>
-        ${favAnime.title} 
-      
-        <img class="anime-image" 
-        src="${favAnime.images.jpg.image_url}">
-        </li>`;
-      // <i class="icon fa-solid fa-heart-circle-xmark"></i>
+      if (favAnime.images.jpg.image_url === noImage) {
+        favoritesList.innerHTML += `
+          <li id="${favAnime.mal_id}" 
+          class="fav-list-item js_fav_list_item"></i>
+          ${favAnime.title} 
+          <i class='icon fa-solid fa-heart-circle-xmark' > </i >
+          <img class="anime-image" 
+          src="${placeholderImage}">
+          </li>`;
+      } else {
+        favoritesList.innerHTML += `
+          <li id="${favAnime.mal_id}" 
+          class="fav-list-item js_fav_list_item"></i>
+          ${favAnime.title} 
+          <i class='icon fa-solid fa-heart-circle-xmark' > </i >
+          <img class="anime-image" 
+          src="${favAnime.images.jpg.image_url}">
+          </li>`;
+      }
     }
   } else {
     renderFavorites();
