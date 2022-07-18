@@ -75,6 +75,7 @@ function handleClick(event) {
     event.currentTarget.classList.remove('red-background');
     event.currentTarget.classList.remove('font-fav');
   }
+
   renderFavorites();
   favStorage();
 }
@@ -149,3 +150,23 @@ function favDisplay() {
 }
 
 favDisplay();
+
+// reset button
+
+function handleResetClick() {
+  resultsList.innerHTML = '';
+  input.value = '';
+}
+
+resetBtn.addEventListener('click', handleResetClick);
+
+// reset favs button
+
+const resetFavsBtn = document.querySelector('.js_reset_favs_btn');
+
+function handleResetFavsClick() {
+  favoritesList.innerHTML = '';
+  localStorage.removeItem('Anime favorites');
+}
+
+resetFavsBtn.addEventListener('click', handleResetFavsClick);
