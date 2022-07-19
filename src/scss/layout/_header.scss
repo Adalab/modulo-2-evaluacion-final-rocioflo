@@ -1,7 +1,23 @@
-.title {
-  font-size: 3rem;
-  margin: 10px;
-  font-family: $title-font;
-  padding: 2rem;
-  letter-spacing: 5px;
+.header {
+  border-bottom: $main-color solid 5px;
+  padding: 4rem 4rem 0.5rem 4rem;
+
+  .title {
+    font-size: 4rem;
+    font-family: $title-font;
+    padding: 1rem 1rem 1rem 1rem;
+    letter-spacing: 5px;
+    border: 5px dotted $main-color;
+    width: fit-content;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    border-radius: 10px;
+  }
+
+  .claim {
+    font-size: 1.5rem;
+    background-color: $main-color;
+    padding: 0.7rem;
+    border-radius: 10px;
+  }
 }

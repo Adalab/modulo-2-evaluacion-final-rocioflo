@@ -40,7 +40,7 @@ function renderAnime() {
     let isFav = '';
 
     if (favCorrelation) {
-      isFav = 'fav';
+      isFav = 'fav-res-background font-fav';
     }
 
     if (item.images.jpg.image_url === noImage) {
@@ -92,7 +92,8 @@ function renderFavorites() {
         <li id="${favAnime.mal_id}" 
         class="fav-list-item js_fav_list_item"></i>
         ${favAnime.title} 
-        <i class="icon fa-solid fa-heart"></i>
+        <i class="icon-heart fa-solid fa-heart"></i>
+        <i class="icon-cancel fa-solid fa-heart-circle-xmark"></i>
         <img class="anime-image" 
         src="${placeholderImage}">
         </li>`;
@@ -101,7 +102,8 @@ function renderFavorites() {
         <li id="${favAnime.mal_id}" 
         class="fav-list-item js_fav_list_item"></i>
         ${favAnime.title} 
-        <i class="icon fa-solid fa-heart"></i>
+        <i class="icon-heart fa-solid fa-heart"></i>
+        <i class="icon-cancel fa-solid fa-heart-circle-xmark"></i>
         <img class="anime-image" 
         src="${favAnime.images.jpg.image_url}">
         </li>`;
@@ -142,7 +144,8 @@ function favDisplay() {
           <li id="${favAnime.mal_id}" 
           class="fav-list-item js_fav_list_item"></i>
           ${favAnime.title} 
-          <i class="icon fa-solid fa-heart"></i>
+          <i class="icon-heart fa-solid fa-heart"></i>
+          <i class="icon-cancel fa-solid fa-heart-circle-xmark"></i>
           <img class="anime-image" 
           src="${placeholderImage}">
           </li>`;
@@ -151,7 +154,8 @@ function favDisplay() {
           <li id="${favAnime.mal_id}" 
           class="fav-list-item js_fav_list_item"></i>
           ${favAnime.title} 
-          <i class="icon fa-solid fa-heart"></i>
+          <i class="icon-heart fa-solid fa-heart"></i>
+          <i class="icon-cancel fa-solid fa-heart-circle-xmark"></i>
           <img class="anime-image" 
           src="${favAnime.images.jpg.image_url}">
           </li>`;

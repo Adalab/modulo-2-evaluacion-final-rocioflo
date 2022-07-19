@@ -23,7 +23,7 @@
     background-color: $main-color;
 
     &:hover {
-      background-color: #f0d697;
+      background-color: #f3c26a;
     }
   }
 
@@ -37,7 +37,7 @@
     background-color: $third-color;
 
     &:hover {
-      background-color: #ee9a85;
+      background-color: #e25859;
     }
   }
 
@@ -50,14 +50,13 @@
       margin: 1rem;
       border: solid 5px $fourth-color;
       height: fit-content;
-      border-radius: 5px;
+      border-radius: 10px;
 
       .favorites-title {
         font-size: 2.5rem;
         font-weight: bold;
         width: fit-content;
         padding: 0.5rem;
-        border-radius: 5px;
         margin: 1rem;
       }
 
@@ -78,10 +77,25 @@
         font-family: $fav-font;
 
         &:hover {
-          background-color: $fifth-color;
+          background-color: $third-color;
+
+          .icon-heart {
+            display: none;
+          }
+
+          .icon-cancel {
+            display: block;
+          }
         }
 
-        .icon {
+        .icon-heart {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+        }
+
+        .icon-cancel {
+          display: none;
           position: absolute;
           right: 10px;
           top: 10px;
@@ -95,10 +109,10 @@
         width: 10rem;
         border-radius: 5px;
         border: none;
-        background-color: $fifth-color;
+        background-color: $third-color;
 
         &:hover {
-          background-color: #677e87;
+          background-color: #e25859;
         }
       }
     }
@@ -108,7 +122,7 @@
       margin: 1rem;
       border: solid 5px $main-color;
       height: fit-content;
-      border-radius: 5px;
+      border-radius: 10px;
 
       .results-title {
         font-size: 2.5rem;
@@ -141,14 +155,18 @@
           gap: 5px;
 
           &:hover {
-            background-color: #f0d697;
+            background-color: $fourth-color;
           }
 
-          &.fav {
-            background-color: $third-color;
+          &.fav-res-background {
+            background-color: $fifth-color;
 
             &:hover {
-              background-color: $second-color;
+              background-color: $third-color;
+            }
+
+            &.font-fav {
+              font-family: $fav-font;
             }
           }
         }
@@ -157,14 +175,6 @@
 
     .anime-image {
       max-width: fit-content;
-    }
-
-    .other-background {
-      background-color: $fourth-color;
-    }
-
-    .font-fav {
-      font-family: $fav-font;
     }
   }
 }
